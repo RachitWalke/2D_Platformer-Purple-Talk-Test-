@@ -22,12 +22,12 @@ public class Obstacles : MonoBehaviour
     void Update()
     {
         enemySpwaner = GameObject.FindObjectOfType<EnemySpwaner>();
-        int i = Random.Range(0, 2);
-        if(i==1)
+        int i = Random.Range(0, 1);
+        if(i==0)
         {
             blueBall = true;
         }
-        else if(i == 2)
+        else if(i == 1)
         {
             GreenBall = true;
         }

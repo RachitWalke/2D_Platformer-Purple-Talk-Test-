@@ -15,6 +15,10 @@ public class EnemyBehaviour : MonoBehaviour
     static int i = 0;
     public int enemyHealth;
 
+    //audio
+    public AudioSource audiosrc;
+    public AudioClip clip;
+
 
     //screen Wrapper
 
@@ -39,6 +43,7 @@ public class EnemyBehaviour : MonoBehaviour
         sprite = GetComponent<SpriteRenderer>();
         renderers = GetComponentsInChildren<Renderer>();
         shake = GameObject.FindGameObjectWithTag("ScreenShake").GetComponent<CameraShake>();
+        audiosrc = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -193,6 +198,7 @@ public class EnemyBehaviour : MonoBehaviour
     {
         if (collision.tag == "Player" && rb.velocity.y == 0f)
         {
+            audiosrc.PlayOneShot(clip);
             switch (enemytype)
             {
                 case EnemyType.spider:

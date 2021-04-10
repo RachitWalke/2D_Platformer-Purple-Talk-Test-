@@ -10,6 +10,7 @@ TagManager:
   - Flipper
   - Destroyer
   - ScreenShake
+  - GameManager
   layers:
   - Default
   - TransparentFX

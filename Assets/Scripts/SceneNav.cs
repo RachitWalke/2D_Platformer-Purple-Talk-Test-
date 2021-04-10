@@ -10,6 +10,10 @@ public class SceneNav : MonoBehaviour
 
     public void sceneloader(string name)
     {
+        if(name == "MainMenu")
+        {
+            Destroy(GameManager.instance);
+        }
         SceneManager.LoadScene(name);
     }
     public void quit()

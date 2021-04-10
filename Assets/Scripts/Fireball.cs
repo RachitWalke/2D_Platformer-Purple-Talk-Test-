@@ -17,11 +17,15 @@ public class Fireball : MonoBehaviour
     {
         rb.velocity = new Vector2(-1, rb.velocity.y) * ballSpeed;
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Player")
         {
+            Debug.Log("Fireball hit");
             GameManager.instance.playerLives--;
+            GameManager.instance.takeDamage(1);
+            Destroy(collision.gameObject);
+            GameManager.instance.spwanPlayer();
         }
     }
 }

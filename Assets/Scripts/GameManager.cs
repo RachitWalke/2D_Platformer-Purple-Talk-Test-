@@ -32,6 +32,8 @@ public class GameManager : MonoBehaviour
     {
         spwanPlayer();
         healthbar.setMaxHealth(playerLives);
+        healthbar = GetComponent<HealthBar>();
+        PlayerSpwanPos = GetComponentInChildren<Transform>();
     }
 
     private void Update()

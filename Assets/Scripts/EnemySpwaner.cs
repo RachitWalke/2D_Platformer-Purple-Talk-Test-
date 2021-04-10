@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemySpwaner : MonoBehaviour
 {
@@ -14,6 +15,11 @@ public class EnemySpwaner : MonoBehaviour
         public int count;
         public float rate;
     }
+
+    //panel
+    public GameObject level;
+    public Text leveltext;
+    private float leveltimecount=2;
 
     public Wave[] waves;
     private int nextwave = 0;
@@ -33,6 +39,7 @@ public class EnemySpwaner : MonoBehaviour
     void Start()
     {
         waveCountDown = timeBetweenWaves;
+        //level.SetActive(true);
     }
 
     // Update is called once per frame
@@ -61,6 +68,20 @@ public class EnemySpwaner : MonoBehaviour
             waveCountDown -= Time.deltaTime;
         }
 
+        if(leveltimecount == 0)
+        {
+            level.SetActive(false);
+        }
+        else
+        {
+            level.SetActive(true);
+        }
+        leveltimecount -= Time.deltaTime;
+        if(leveltimecount < 0)
+        {
+            leveltimecount = 0;
+        }
+        Debug.Log(leveltimecount);
     }
 
     bool isEnemyAlive()
@@ -87,6 +108,7 @@ public class EnemySpwaner : MonoBehaviour
             maxEnemy++;
         }
 
+        leveltimecount = 2;
         if(nextwave + 1 > waves.Length -1)
         {
             nextwave = -1;
@@ -99,6 +121,7 @@ public class EnemySpwaner : MonoBehaviour
 
         nextwave++;
         waveCount++;
+        leveltext.text = "Level " + (waveCount + 1);
     }
 
     IEnumerator spwanWave(Wave _wave)

@@ -11,12 +11,18 @@ public class PlayerAttack : MonoBehaviour
     public float attackRange;
     public LayerMask whatIsEnemy;
     public int damage;
+    public bool isAttack = false;
 
     private Animator anim;
 
+    //audio
+    public AudioSource audiosrc;
+    public AudioClip clip;
+    public AudioClip clip2;
     private void Start()
     {
         anim = GetComponent<Animator>();
+        audiosrc = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -32,8 +38,10 @@ public class PlayerAttack : MonoBehaviour
                 for (int i = 0; i < enemiesToHit.Length; i++)
                 {
                     enemiesToHit[i].GetComponent<EnemyBehaviour>().TakeDamage(damage);
+                    audiosrc.PlayOneShot(clip2);
                 }
                 timeBtwAttack = startTimeBtwAttack;
+                audiosrc.PlayOneShot(clip);
             }
             else
             {
@@ -44,6 +52,7 @@ public class PlayerAttack : MonoBehaviour
         {
             timeBtwAttack -= Time.deltaTime;
         }
+        isAttack = anim.GetBool("isAttacking");
     }
 
     private void OnDrawGizmosSelected()
