@@ -18,12 +18,6 @@ public class ScoreManager : MonoBehaviour
         GameManager.instance.onUpdateScore += UpdateScore;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     private void UpdateScore(int num)
     {
         scoreCount += num;
