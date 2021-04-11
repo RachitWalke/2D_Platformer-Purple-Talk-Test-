@@ -11,6 +11,7 @@ TagManager:
   - Destroyer
   - ScreenShake
   - GameManager
+  - LevelEnd
   layers:
   - Default
   - TransparentFX
@@ -18,7 +19,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - Player
   - 
   - Enemy
   - 

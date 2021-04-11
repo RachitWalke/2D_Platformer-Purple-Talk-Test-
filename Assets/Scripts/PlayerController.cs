@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -16,6 +17,12 @@ public class PlayerController : MonoBehaviour
     bool isWrappingX = false;
     bool isWrappingY = false;
 
+    public int playerHealth;
+    public HealthBar healthBar;
+
+    public AudioSource audiosrc;
+    public AudioClip clip;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +30,8 @@ public class PlayerController : MonoBehaviour
         anim = GetComponent<Animator>();
         renderers = GetComponentsInChildren<Renderer>();
         localScale = transform.localScale;
+        healthBar.setMaxHealth(playerHealth);
+        audiosrc = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -73,7 +82,46 @@ public class PlayerController : MonoBehaviour
         transform.localScale = localScale;
     }
 
-    
+    public void TakeDamage(int Damage)
+    {
+        playerHealth -= Damage;
+        healthBar.setHealth(playerHealth);
+        audiosrc.PlayOneShot(clip);
+        if(playerHealth == 0)
+        {
+            SceneManager.LoadScene("GameOver");
+        }
+    }
+
+    public void setVolume(float musicvol)
+    {
+        audiosrc.volume = musicvol;
+    }
+
+    public void Mute()
+    {
+        if (audiosrc.mute)
+        {
+            audiosrc.mute = false;
+        }
+        else
+        {
+            audiosrc.mute = true;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.tag == "Destroyer")
+        {
+            playerHealth = 0;
+            SceneManager.LoadScene("GameOver");
+        }
+        if (collision.tag == "LevelEnd")
+        {
+            SceneManager.LoadScene("GameOver");
+        }
+    }
 
     bool CheckRenderers()
     {

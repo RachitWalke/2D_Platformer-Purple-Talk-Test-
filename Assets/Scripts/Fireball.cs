@@ -21,10 +21,10 @@ public class Fireball : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            Debug.Log("Fireball hit");
             GameManager.instance.playerLives--;
             GameManager.instance.takeDamage(1);
             Destroy(collision.gameObject);
+            Destroy(this.gameObject);
             GameManager.instance.spwanPlayer();
         }
     }

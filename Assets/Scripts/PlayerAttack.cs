@@ -32,7 +32,6 @@ public class PlayerAttack : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0))
             {
-                Debug.Log("hit");
                 anim.SetBool("isAttacking", true);
                 Collider2D[] enemiesToHit = Physics2D.OverlapCircleAll(attackPos.position, attackRange, whatIsEnemy);
                 for (int i = 0; i < enemiesToHit.Length; i++)
@@ -53,6 +52,23 @@ public class PlayerAttack : MonoBehaviour
             timeBtwAttack -= Time.deltaTime;
         }
         isAttack = anim.GetBool("isAttacking");
+    }
+
+    public void setVolume(float musicvol)
+    {
+        audiosrc.volume = musicvol;
+    }
+
+    public void Mute()
+    {
+        if (audiosrc.mute)
+        {
+            audiosrc.mute = false;
+        }
+        else
+        {
+            audiosrc.mute = true;
+        }
     }
 
     private void OnDrawGizmosSelected()

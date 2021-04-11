@@ -81,7 +81,6 @@ public class EnemySpwaner : MonoBehaviour
         {
             leveltimecount = 0;
         }
-        Debug.Log(leveltimecount);
     }
 
     bool isEnemyAlive()
@@ -100,7 +99,6 @@ public class EnemySpwaner : MonoBehaviour
 
     void waveCompleted()
     {
-        Debug.Log("Wave complete");
         state = spwanState.Counting;
         waveCountDown = timeBetweenWaves;
         if(maxEnemy < 3)
@@ -112,7 +110,6 @@ public class EnemySpwaner : MonoBehaviour
         if(nextwave + 1 > waves.Length -1)
         {
             nextwave = -1;
-            Debug.Log("All WAVES COMPLETED");
             for (int i = 0; i < waves.Length; i++)
             {
                 waves[i].count++;

@@ -12,7 +12,6 @@ public class EnemyBehaviour : MonoBehaviour
     public float enemySpeed;
     public bool isStaggered = false;
     private bool animbool = true;
-    static int i = 0;
     public int enemyHealth;
 
     //audio
@@ -151,7 +150,6 @@ public class EnemyBehaviour : MonoBehaviour
             shake.CamShake();
             enemyHealth -= damage;
             Instantiate(bloodeffect, transform.position, Quaternion.identity);
-            Debug.Log("DamageTaken");
         }
     }
 
@@ -247,7 +245,6 @@ public class EnemyBehaviour : MonoBehaviour
         if (collision.gameObject.tag == "Player" && !isStaggered)
         {
             GameManager.instance.takeDamage(1);
-            i++;
             Destroy(collision.gameObject);
             GameManager.instance.spwanPlayer();
         }
@@ -269,11 +266,8 @@ public class EnemyBehaviour : MonoBehaviour
             // If at least one render is visible, return true
             if (renderer.isVisible)
             {
-                Debug.Log("Object is visible");
                 return true;
             }
-            else
-                Debug.Log("Object is not visible");
         }
 
         // Otherwise, the object is invisible

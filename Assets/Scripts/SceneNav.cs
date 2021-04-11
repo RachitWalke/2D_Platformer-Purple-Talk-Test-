@@ -7,6 +7,7 @@ public class SceneNav : MonoBehaviour
 {
     public GameObject uiobj1;
     public GameObject uiobj2;
+    public GameObject uiobj3;
 
     public void sceneloader(string name)
     {
@@ -30,5 +31,11 @@ public class SceneNav : MonoBehaviour
     {
         uiobj1.SetActive(false);
         uiobj2.SetActive(true);
+        uiobj3.SetActive(false);
+    }
+    public void Mode()
+    {
+        uiobj3.SetActive(true);
+        uiobj2.SetActive(false);
     }
 }
